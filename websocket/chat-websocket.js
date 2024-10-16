@@ -1,6 +1,6 @@
-const wbs = require('ws')
-const http = require('http')
-const fs = require('fs')
+const wbs = require("ws");
+const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((req, res) => {
   fs.readFile("./websocket/chat-websocket.html", (err, file) => {
@@ -16,13 +16,12 @@ const server = http.createServer((req, res) => {
 
 const ws = new wbs.Server({ server });
 
-ws.on('connection', (skt) => {
-  skt.on('message', (msg) => {
-    console.log(msg.toString('utf-8'))
+ws.on("connection", (skt) => {
+  skt.on("message", (msg) => {
+    console.log(msg.toString("utf-8"));
     ws.clients.forEach((client) => {
-        client.send(msg);
-    })
-  })
-})
-
-server.listen(3000)
+      client.send(msg);
+    });
+  });
+});
+server.listen(3000);

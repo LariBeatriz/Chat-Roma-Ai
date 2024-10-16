@@ -1,28 +1,27 @@
-<input type="text">
-<button onclick="enviar()">Enviar</button>
-<ul></ul>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <!-- Campo de input e botão de enviar na parte superior -->
+      <div class="input-container">
+        <input type="text" id="msgInput" placeholder="Digite sua mensagem..." />
+        <button onclick="enviar()">Enviar</button>
+      </div>
 
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.0/socket.io.js">
-  </script>
+      <!-- Container de mensagens -->
+      <div id="messages-container" class="messages-container">
+        <ul id="messages"></ul>
+      </div>
+    </div>
 
-<script>
-
-  const socket = io("https://d34ee0de-67b9-4b7d-b05a-04142e487636-00-2vmyeir5q1ypx.janeway.replit.dev/");
-
-  socket.on("connect", () => {
-    console.log("conectado ao servidor!")
-  })
-
-  socket.on("message", (msg) =>{
-    console.log(msg)
-    const ul = document.querySelector('ul');
-    ul.innerHTML += `<li>${msg}</li>`;
-  })
-
-function enviar() {
-  let msg =       document.querySelector('input');
-  socket.send(msg.value);
-  msg.value = ""
-}
-  
-</script>
+    <!-- Importando o arquivo JS do frontend -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat.js"></script>
+  </body>
+</html>
